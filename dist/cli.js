@@ -17,7 +17,12 @@ var CLIENT_ENTRY_PATH = _path.join.call(void 0,
   "runtime",
   "client-entry.tsx"
 );
-var SERVER_ENTRY_PATH = _path.join.call(void 0, PACKAGE_ROOT, "src", "runtime", "ssr-entry.tsx");
+var SERVER_ENTRY_PATH = _path.join.call(void 0, 
+  PACKAGE_ROOT,
+  "src",
+  "runtime",
+  "ssr-entry.tsx"
+);
 
 // src/node/plugin-jaguar/indexHtml.ts
 function pluginIndexHtml() {
@@ -75,7 +80,6 @@ function createDevServer(root) {
 
 
 var _fsextra = require('fs-extra'); var _fsextra2 = _interopRequireDefault(_fsextra);
-var _url = require('url');
 async function bundle(root) {
   const resolveViteConfig = (isServer) => ({
     mode: "production",
@@ -91,7 +95,7 @@ async function bundle(root) {
       }
     }
   });
-  console.log(`Building client + server bundles...`);
+  console.log("Building client + server bundles...");
   try {
     const [clientBundle, serverBundle] = await Promise.all([
       // client build
@@ -108,7 +112,7 @@ async function renderPage(render, root, clientBundle) {
   const clientChunk = clientBundle.output.find(
     (chunk) => chunk.type === "chunk" && chunk.isEntry
   );
-  console.log(`Rendering page in server side...`);
+  console.log("Rendering page in server side...");
   const appHtml = render();
   const html = `
   <!DOCTYPE html>
@@ -131,7 +135,7 @@ async function renderPage(render, root, clientBundle) {
 async function build(root = process.cwd()) {
   const [clientBundle] = await bundle(root);
   const serverEntryPath = _path.join.call(void 0, root, ".temp", "ssr-entry.js");
-  const { render } = await Promise.resolve().then(() => _interopRequireWildcard(require(_url.pathToFileURL.call(void 0, serverEntryPath))));
+  const { render } = await Promise.resolve().then(() => _interopRequireWildcard(require(serverEntryPath)));
   await renderPage(render, root, clientBundle);
 }
 
