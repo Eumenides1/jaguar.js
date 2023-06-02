@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "tsc -w"
+    "start": "tsup --watch",
+    "build": "tsup",
+    "preview":"cd build && serve ."
   },
   "bin": {
     "jaguar": "bin/jaguar.js"
@@ -15,7 +17,9 @@
   "devDependencies": {
     "@types/fs-extra": "^11.0.1",
     "@types/node": "^20.2.5",
+    "ora": "^6.3.1",
     "rollup": "^3.23.0",
+    "tsup": "^6.7.0",
     "typescript": "^5.0.4"
   },
   "dependencies": {
