@@ -1,4 +1,4 @@
-// node_modules/.pnpm/tsup@6.7.0_typescript@5.0.4/node_modules/tsup/assets/esm_shims.js
+// node_modules/.pnpm/tsup@6.7.0_ts-node@10.9.1_typescript@5.0.4/node_modules/tsup/assets/esm_shims.js
 import { fileURLToPath } from "url";
 import path from "path";
 var getFilename = () => fileURLToPath(import.meta.url);
@@ -79,7 +79,12 @@ import pluginReact from "@vitejs/plugin-react";
 function createDevServer(root) {
   return createServer({
     root,
-    plugins: [pluginIndexHtml(), pluginReact()]
+    plugins: [pluginIndexHtml(), pluginReact()],
+    server: {
+      fs: {
+        allow: [PACKAGE_ROOT]
+      }
+    }
   });
 }
 

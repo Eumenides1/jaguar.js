@@ -72,7 +72,12 @@ var _pluginreact = require('@vitejs/plugin-react'); var _pluginreact2 = _interop
 function createDevServer(root) {
   return _vite.createServer.call(void 0, {
     root,
-    plugins: [pluginIndexHtml(), _pluginreact2.default.call(void 0, )]
+    plugins: [pluginIndexHtml(), _pluginreact2.default.call(void 0, )],
+    server: {
+      fs: {
+        allow: [PACKAGE_ROOT]
+      }
+    }
   });
 }
 
