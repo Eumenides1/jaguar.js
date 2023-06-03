@@ -69,7 +69,37 @@ function pluginIndexHtml() {
 
 // src/node/dev.ts
 var _pluginreact = require('@vitejs/plugin-react'); var _pluginreact2 = _interopRequireDefault(_pluginreact);
-function createDevServer(root) {
+
+// src/node/config.ts
+
+var _fsextra = require('fs-extra'); var _fsextra2 = _interopRequireDefault(_fsextra);
+
+async function resolveConfig(root, command, mode) {
+  const configPath = getUserConfigPath(root);
+  const result = await _vite.loadConfigFromFile.call(void 0, { command, mode }, configPath, root);
+  if (result) {
+    const { config: rawConfig = {} } = result;
+    const userConfig = await (typeof rawConfig === "function" ? rawConfig() : rawConfig);
+    return [configPath, userConfig];
+  } else {
+    return [configPath, {}];
+  }
+}
+function getUserConfigPath(root) {
+  try {
+    const supportConfigFiles = ["config.ts", "config.js"];
+    const configPath = supportConfigFiles.map((file) => _path.resolve.call(void 0, root, file)).find(_fsextra2.default.pathExistsSync);
+    return configPath;
+  } catch (e) {
+    console.error(`Failed to load user config: ${e}`);
+    throw e;
+  }
+}
+
+// src/node/dev.ts
+async function createDevServer(root) {
+  const config = await resolveConfig(root, "serve", "development");
+  console.log(config);
   return _vite.createServer.call(void 0, {
     root,
     plugins: [pluginIndexHtml(), _pluginreact2.default.call(void 0, )],
@@ -84,7 +114,7 @@ function createDevServer(root) {
 // src/node/build.ts
 
 
-var _fsextra = require('fs-extra'); var _fsextra2 = _interopRequireDefault(_fsextra);
+
 async function bundle(root) {
   const resolveViteConfig = (isServer) => ({
     mode: "production",

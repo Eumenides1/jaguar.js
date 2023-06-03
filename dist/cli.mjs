@@ -76,7 +76,37 @@ function pluginIndexHtml() {
 
 // src/node/dev.ts
 import pluginReact from "@vitejs/plugin-react";
-function createDevServer(root) {
+
+// src/node/config.ts
+import { resolve } from "path";
+import fs from "fs-extra";
+import { loadConfigFromFile } from "vite";
+async function resolveConfig(root, command, mode) {
+  const configPath = getUserConfigPath(root);
+  const result = await loadConfigFromFile({ command, mode }, configPath, root);
+  if (result) {
+    const { config: rawConfig = {} } = result;
+    const userConfig = await (typeof rawConfig === "function" ? rawConfig() : rawConfig);
+    return [configPath, userConfig];
+  } else {
+    return [configPath, {}];
+  }
+}
+function getUserConfigPath(root) {
+  try {
+    const supportConfigFiles = ["config.ts", "config.js"];
+    const configPath = supportConfigFiles.map((file) => resolve(root, file)).find(fs.pathExistsSync);
+    return configPath;
+  } catch (e) {
+    console.error(`Failed to load user config: ${e}`);
+    throw e;
+  }
+}
+
+// src/node/dev.ts
+async function createDevServer(root) {
+  const config = await resolveConfig(root, "serve", "development");
+  console.log(config);
   return createServer({
     root,
     plugins: [pluginIndexHtml(), pluginReact()],
@@ -91,7 +121,7 @@ function createDevServer(root) {
 // src/node/build.ts
 import { build as viteBuild } from "vite";
 import { join as join2 } from "path";
-import fs from "fs-extra";
+import fs2 from "fs-extra";
 async function bundle(root) {
   const resolveViteConfig = (isServer) => ({
     mode: "production",
@@ -140,9 +170,9 @@ async function renderPage(render, root, clientBundle) {
       <script type="module" src="/${clientChunk?.fileName}"></script>
     </body>
   </html>`.trim();
-  await fs.ensureDir(join2(root, "build"));
-  await fs.writeFile(join2(root, "build/index.html"), html);
-  await fs.remove(join2(root, ".temp"));
+  await fs2.ensureDir(join2(root, "build"));
+  await fs2.writeFile(join2(root, "build/index.html"), html);
+  await fs2.remove(join2(root, ".temp"));
 }
 async function build(root = process.cwd()) {
   const [clientBundle] = await bundle(root);
@@ -152,7 +182,7 @@ async function build(root = process.cwd()) {
 }
 
 // src/node/cli.ts
-import { resolve } from "path";
+import { resolve as resolve2 } from "path";
 var cli = cac("jaguar").version("0.0.1").help();
 cli.command("dev [root]", "start dev server").action(async (root) => {
   const server = await createDevServer(root);
@@ -161,7 +191,7 @@ cli.command("dev [root]", "start dev server").action(async (root) => {
 });
 cli.command("build [root]", "build in production").action(async (root) => {
   try {
-    root = resolve(root);
+    root = resolve2(root);
     await build(root);
   } catch (e) {
     console.log(e);
