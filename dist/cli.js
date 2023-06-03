@@ -1,120 +1,15 @@
-"use strict"; function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { newObj[key] = obj[key]; } } } newObj.default = obj; return newObj; } } function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; } function _optionalChain(ops) { let lastAccessLHS = undefined; let value = ops[0]; let i = 1; while (i < ops.length) { const op = ops[i]; const fn = ops[i + 1]; i += 2; if ((op === 'optionalAccess' || op === 'optionalCall') && value == null) { return undefined; } if (op === 'access' || op === 'optionalAccess') { lastAccessLHS = value; value = fn(value); } else if (op === 'call' || op === 'optionalCall') { value = fn((...args) => value.call(lastAccessLHS, ...args)); lastAccessLHS = undefined; } } return value; }// src/node/cli.ts
+"use strict"; function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { newObj[key] = obj[key]; } } } newObj.default = obj; return newObj; } } function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; } function _optionalChain(ops) { let lastAccessLHS = undefined; let value = ops[0]; let i = 1; while (i < ops.length) { const op = ops[i]; const fn = ops[i + 1]; i += 2; if ((op === 'optionalAccess' || op === 'optionalCall') && value == null) { return undefined; } if (op === 'access' || op === 'optionalAccess') { lastAccessLHS = value; value = fn(value); } else if (op === 'call' || op === 'optionalCall') { value = fn((...args) => value.call(lastAccessLHS, ...args)); lastAccessLHS = undefined; } } return value; }
+
+
+var _chunkV2F2AQ67js = require('./chunk-V2F2AQ67.js');
+
+// src/node/cli.ts
 var _cac = require('cac'); var _cac2 = _interopRequireDefault(_cac);
 
-// src/node/dev.ts
-var _vite = require('vite');
-
-// src/node/plugin-jaguar/indexHtml.ts
-var _promises = require('fs/promises');
-
-// src/node/constants/index.ts
-var _path = require('path');
-var PACKAGE_ROOT = _path.join.call(void 0, __dirname, "..");
-var DEFAULT_HTML_PATH = _path.join.call(void 0, PACKAGE_ROOT, "template.html");
-var CLIENT_ENTRY_PATH = _path.join.call(void 0, 
-  PACKAGE_ROOT,
-  "src",
-  "runtime",
-  "client-entry.tsx"
-);
-var SERVER_ENTRY_PATH = _path.join.call(void 0, 
-  PACKAGE_ROOT,
-  "src",
-  "runtime",
-  "ssr-entry.tsx"
-);
-
-// src/node/plugin-jaguar/indexHtml.ts
-function pluginIndexHtml() {
-  return {
-    name: "jaguar:index-html",
-    apply: "serve",
-    // 插入入口 script 标签
-    transformIndexHtml(html) {
-      return {
-        html,
-        tags: [
-          {
-            tag: "script",
-            attrs: {
-              type: "module",
-              src: `/@fs/${CLIENT_ENTRY_PATH}`
-            },
-            injectTo: "body"
-          }
-        ]
-      };
-    },
-    configureServer(server) {
-      return () => {
-        server.middlewares.use(async (req, res, next) => {
-          let html = await _promises.readFile.call(void 0, DEFAULT_HTML_PATH, "utf-8");
-          try {
-            html = await server.transformIndexHtml(
-              req.url,
-              html,
-              req.originalUrl
-            );
-            res.statusCode = 200;
-            res.setHeader("Content-Type", "text/html");
-            res.end(html);
-          } catch (e) {
-            return next(e);
-          }
-        });
-      };
-    }
-  };
-}
-
-// src/node/dev.ts
-var _pluginreact = require('@vitejs/plugin-react'); var _pluginreact2 = _interopRequireDefault(_pluginreact);
-
-// src/node/config.ts
-
-var _fsextra = require('fs-extra'); var _fsextra2 = _interopRequireDefault(_fsextra);
-
-async function resolveConfig(root, command, mode) {
-  const configPath = getUserConfigPath(root);
-  const result = await _vite.loadConfigFromFile.call(void 0, { command, mode }, configPath, root);
-  if (result) {
-    const { config: rawConfig = {} } = result;
-    const userConfig = await (typeof rawConfig === "function" ? rawConfig() : rawConfig);
-    return [configPath, userConfig];
-  } else {
-    return [configPath, {}];
-  }
-}
-function getUserConfigPath(root) {
-  try {
-    const supportConfigFiles = ["config.ts", "config.js"];
-    const configPath = supportConfigFiles.map((file) => _path.resolve.call(void 0, root, file)).find(_fsextra2.default.pathExistsSync);
-    return configPath;
-  } catch (e) {
-    console.error(`Failed to load user config: ${e}`);
-    throw e;
-  }
-}
-
-// src/node/dev.ts
-async function createDevServer(root) {
-  const config = await resolveConfig(root, "serve", "development");
-  console.log(config);
-  return _vite.createServer.call(void 0, {
-    root,
-    plugins: [pluginIndexHtml(), _pluginreact2.default.call(void 0, )],
-    server: {
-      fs: {
-        allow: [PACKAGE_ROOT]
-      }
-    }
-  });
-}
-
 // src/node/build.ts
-
-
-
+var _vite = require('vite');
+var _path = require('path');
+var _fsextra = require('fs-extra'); var _fsextra2 = _interopRequireDefault(_fsextra);
 async function bundle(root) {
   const resolveViteConfig = (isServer) => ({
     mode: "production",
@@ -123,7 +18,7 @@ async function bundle(root) {
       ssr: isServer,
       outDir: isServer ? ".temp" : "build",
       rollupOptions: {
-        input: isServer ? SERVER_ENTRY_PATH : CLIENT_ENTRY_PATH,
+        input: isServer ? _chunkV2F2AQ67js.SERVER_ENTRY_PATH : _chunkV2F2AQ67js.CLIENT_ENTRY_PATH,
         output: {
           format: isServer ? "cjs" : "esm"
         }
@@ -178,9 +73,16 @@ async function build(root = process.cwd()) {
 
 var cli = _cac2.default.call(void 0, "jaguar").version("0.0.1").help();
 cli.command("dev [root]", "start dev server").action(async (root) => {
-  const server = await createDevServer(root);
-  await server.listen();
-  server.printUrls();
+  const createServer = async () => {
+    const { createDevServer } = await Promise.resolve().then(() => _interopRequireWildcard(require("./dev.js")));
+    const server = await createDevServer(root, async () => {
+      await server.close();
+      await createServer();
+    });
+    await server.listen();
+    server.printUrls();
+  };
+  await createServer();
 });
 cli.command("build [root]", "build in production").action(async (root) => {
   try {
