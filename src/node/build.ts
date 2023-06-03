@@ -1,16 +1,25 @@
 import { build as viteBuild, InlineConfig } from 'vite';
-import { CLIENT_ENTRY_PATH, SERVER_ENTRY_PATH } from './constants';
 import type { RollupOutput } from 'rollup';
-import { join } from 'path';
+import { CLIENT_ENTRY_PATH, SERVER_ENTRY_PATH } from './constants';
+import path, { join } from 'path';
 import fs from 'fs-extra';
+// import ora from 'ora';
+import { pluginConfig } from './plugin-jaguar/config';
+import { SiteConfig } from 'shared/types';
+import pluginReact from '@vitejs/plugin-react';
 
-export async function bundle(root: string) {
+export async function bundle(root: string, config: SiteConfig) {
   const resolveViteConfig = (isServer: boolean): InlineConfig => ({
     mode: 'production',
     root,
+    plugins: [pluginReact(), pluginConfig(config)],
+    ssr: {
+      noExternal: ['react-router-dom']
+    },
     build: {
+      minify: false,
       ssr: isServer,
-      outDir: isServer ? '.temp' : 'build',
+      outDir: isServer ? path.join(root, '.temp') : 'build',
       rollupOptions: {
         input: isServer ? SERVER_ENTRY_PATH : CLIENT_ENTRY_PATH,
         output: {
@@ -19,7 +28,8 @@ export async function bundle(root: string) {
       }
     }
   });
-  console.log('Building client + server bundles...');
+  // const spinner = ora();
+  // spinner.start(`Building client + server bundles...`);
 
   try {
     const [clientBundle, serverBundle] = await Promise.all([
@@ -45,30 +55,34 @@ export async function renderPage(
   console.log('Rendering page in server side...');
   const appHtml = render();
   const html = `
-  <!DOCTYPE html>
-  <html>
-    <head>
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width,initial-scale=1">
-      <title>title</title>
-      <meta name="description" content="xxx">
-    </head>
-    <body>
-      <div id="root">${appHtml}</div>
-      <script type="module" src="/${clientChunk?.fileName}"></script>
-    </body>
-  </html>`.trim();
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>title</title>
+    <meta name="description" content="xxx">
+  </head>
+  <body>
+    <div id="root">${appHtml}</div>
+    <script type="module" src="/${clientChunk?.fileName}"></script>
+  </body>
+</html>`.trim();
   await fs.ensureDir(join(root, 'build'));
   await fs.writeFile(join(root, 'build/index.html'), html);
   await fs.remove(join(root, '.temp'));
 }
 
-export async function build(root: string = process.cwd()) {
+export async function build(root: string = process.cwd(), config: SiteConfig) {
   // 1. bundle - client 端 + server 端
-  const [clientBundle] = await bundle(root);
+  const [clientBundle] = await bundle(root, config);
   // 2. 引入 server-entry 模块
   const serverEntryPath = join(root, '.temp', 'ssr-entry.js');
   const { render } = await import(serverEntryPath);
   // 3. 服务端渲染，产出 HTML
-  await renderPage(render, root, clientBundle);
+  try {
+    await renderPage(render, root, clientBundle);
+  } catch (e) {
+    console.log('Render page error.\n', e);
+  }
 }

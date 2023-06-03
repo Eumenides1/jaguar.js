@@ -6,9 +6,9 @@ export default defineConfig({
     index: './src/node/index.ts',
     dev: './src/node/dev.ts'
   },
-  clean: true, // 清空之前的构建产物,
   bundle: true,
   splitting: true,
+  minify: process.env.NODE_ENV === 'production',
   outDir: 'dist',
   format: ['cjs', 'esm'],
   dts: true,

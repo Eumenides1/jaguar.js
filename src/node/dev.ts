@@ -13,7 +13,7 @@ export async function createDevServer(
   console.log(config);
 
   return createServer({
-    root,
+    root: PACKAGE_ROOT,
     plugins: [pluginIndexHtml(), pluginReact(), pluginConfig(config, restart)],
     server: {
       fs: {
