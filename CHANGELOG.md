@@ -1,3 +1,11 @@
+## [1.0.2](https://github.com/Eumenides1/jaguar.js/compare/1.0.0-release...1.0.2) (2023-06-04)
+
+
+
+## [1.0.2](https://github.com/Eumenides1/jaguar.js/compare/1.0.0-release...1.0.2) (2023-06-04)
+
+
+
 ## 1.0.1 (2023-06-04)
 
 

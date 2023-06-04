@@ -82,7 +82,7 @@ async function main() {
 
     step('\nCommitting changes...');
     await run('git', ['add', '-A']);
-    await run('git', ['commit', '-m', `'feat: 版本号-v${targetVersion}'`]);
+    await run('git', ['commit', '-m', `feat: 版本号-v${targetVersion}`]);
 
     step('\nPublishing packages...');
     await run('pnpm', ['publish', '--access', 'public']);

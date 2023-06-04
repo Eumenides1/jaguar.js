@@ -1,6 +1,6 @@
 {
   "name": "jaguar.js",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -112,6 +112,7 @@
     "README.md",
     "src/runtime",
     "src/theme-default",
-    "src/shared"
+    "src/shared",
+    "template.html"
   ]
 }
