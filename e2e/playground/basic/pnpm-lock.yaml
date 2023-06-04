@@ -1,7 +1,7 @@
 lockfileVersion: '6.0'
 
 dependencies:
-  islandjs:
+  jaguarjs:
     specifier: ../../..
     version: link:../../..
 

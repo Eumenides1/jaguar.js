@@ -1,0 +1,354 @@
+/**
+ * Colors Base
+ *
+ * These are the pure base color presets. Most of the time, you should not be
+ * using these colors directly in the theme but rather use "Colors Theme"
+ * instead because those are "Theme (light or dark)" dependant.
+ * -------------------------------------------------------------------------- */
+
+:root {
+    --jaguar-c-white: #ffffff;
+    --jaguar-c-white-soft: #f9f9f9;
+    --jaguar-c-white-mute: #f1f1f1;
+
+    --jaguar-c-black: #1a1a1a;
+    --jaguar-c-black-pure: #000000;
+    --jaguar-c-black-soft: #242424;
+    --jaguar-c-black-mute: #2f2f2f;
+
+    --jaguar-c-gray: #8e8e8e;
+    --jaguar-c-gray-light-1: #aeaeae;
+    --jaguar-c-gray-light-2: #c7c7c7;
+    --jaguar-c-gray-light-3: #d1d1d1;
+    --jaguar-c-gray-light-4: #e5e5e5;
+    --jaguar-c-gray-light-5: #f2f2f2;
+    --jaguar-c-gray-dark-1: #636363;
+    --jaguar-c-gray-dark-2: #484848;
+    --jaguar-c-gray-dark-3: #3a3a3a;
+    --jaguar-c-gray-dark-4: #282828;
+    --jaguar-c-gray-dark-5: #202020;
+
+    --jaguar-c-divider-light-1: rgba(60, 60, 60, 0.29);
+    --jaguar-c-divider-light-2: rgba(60, 60, 60, 0.12);
+    --jaguar-c-divider-dark-1: rgba(84, 84, 84, 0.65);
+    --jaguar-c-divider-dark-2: rgba(84, 84, 84, 0.48);
+
+    --jaguar-c-indigo: #213547;
+    --jaguar-c-indigo-soft: #476582;
+    --jaguar-c-indigo-light: #aac8e4;
+    --jaguar-c-indigo-lighter: #c9def1;
+    --jaguar-c-indigo-dark: #1d2f3f;
+    --jaguar-c-indigo-darker: #14212e;
+
+    --jaguar-c-text-light-1: var(--jaguar-c-indigo);
+    --jaguar-c-text-light-2: rgba(60, 60, 60, 0.7);
+    --jaguar-c-text-light-3: rgba(60, 60, 60, 0.33);
+    --jaguar-c-text-light-4: rgba(60, 60, 60, 0.18);
+
+    --jaguar-c-text-dark-1: rgba(255, 255, 255, 0.87);
+    --jaguar-c-text-dark-2: rgba(235, 235, 235, 0.6);
+    --jaguar-c-text-dark-3: rgba(235, 235, 235, 0.38);
+    --jaguar-c-text-dark-4: rgba(235, 235, 235, 0.18);
+
+    --jaguar-c-green: #21b8a3;
+    --jaguar-c-green-light: #41c6b0;
+    --jaguar-c-green-lighter: #41c6b0;
+    --jaguar-c-green-dark: #149684;
+    --jaguar-c-green-darker: #149684;
+    --jaguar-c-green-dimm: #062521;
+
+    --jaguar-c-green-dimm-1: rgba(66, 184, 131, 0.5);
+    --jaguar-c-green-dimm-2: rgba(66, 184, 131, 0.25);
+    --jaguar-c-green-dimm-3: rgba(66, 184, 131, 0.05);
+
+    --jaguar-c-blue: #646cff;
+    --jaguar-c-blue-light: #747bff;
+    --jaguar-c-blue-lighter: #9499ff;
+    --jaguar-c-blue-lightest: #bcc0ff;
+    --jaguar-c-blue-dark: #535bf2;
+    --jaguar-c-blue-darker: #454ce1;
+    --jaguar-c-blue-dimm: rgba(100, 108, 255, 0.08);
+
+    --jaguar-c-yellow: #ffc517;
+    --jaguar-c-yellow-light: #fcd253;
+    --jaguar-c-yellow-lighter: #fcfc7c;
+    --jaguar-c-yellow-darker: #ad850e;
+    --jaguar-c-yellow-dimm-1: rgba(255, 197, 23, 0.5);
+    --jaguar-c-yellow-dimm-2: rgba(255, 197, 23, 0.25);
+    --jaguar-c-yellow-dimm-3: rgba(255, 197, 23, 0.05);
+
+    --jaguar-c-red: #ed3c50;
+    --jaguar-c-red-light: #f54e82;
+    --jaguar-c-red-lighter: #fd1d7c;
+    --jaguar-c-red-darker: #ab2131;
+    --jaguar-c-red-dimm-1: rgba(237, 60, 80, 0.5);
+    --jaguar-c-red-dimm-2: rgba(237, 60, 80, 0.25);
+    --jaguar-c-red-dimm-3: rgba(237, 60, 80, 0.05);
+}
+
+/**
+   * Colors Theme
+   * -------------------------------------------------------------------------- */
+
+:root {
+    --jaguar-c-bg: var(--jaguar-c-white);
+    --jaguar-c-bg-soft: var(--jaguar-c-white-soft);
+    --jaguar-c-bg-mute: var(--jaguar-c-white-mute);
+    --jaguar-c-bg-alt: var(--jaguar-c-white-soft);
+
+    --jaguar-c-divider: var(--jaguar-c-divider-light-1);
+    --jaguar-c-divider-light: var(--jaguar-c-divider-light-2);
+
+    --jaguar-c-text-1: var(--jaguar-c-text-light-1);
+    --jaguar-c-text-2: var(--jaguar-c-text-light-2);
+    --jaguar-c-text-3: var(--jaguar-c-text-light-3);
+    --jaguar-c-text-4: var(--jaguar-c-text-light-4);
+
+    --jaguar-c-text-code: var(--jaguar-c-indigo-soft);
+
+    --jaguar-c-brand: var(--jaguar-c-green);
+    --jaguar-c-brand-light: var(--jaguar-c-green-light);
+    --jaguar-c-brand-lighter: var(--jaguar-c-green-lighter);
+    --jaguar-c-brand-dark: var(--jaguar-c-green-dark);
+    --jaguar-c-brand-darker: var(--jaguar-c-green-darker);
+}
+
+.dark {
+    --jaguar-c-bg: var(--jaguar-c-black-soft);
+    --jaguar-c-bg-soft: var(--jaguar-c-black-mute);
+    --jaguar-c-bg-mute: var(--jaguar-c-gray-dark-3);
+    --jaguar-c-bg-alt: var(--jaguar-c-black);
+
+    --jaguar-c-divider: var(--jaguar-c-divider-dark-1);
+    --jaguar-c-divider-light: var(--jaguar-c-divider-dark-2);
+
+    --jaguar-c-divider-inverse: var(--jaguar-c-divider-light-1);
+    --jaguar-c-divider-inverse-light: var(--jaguar-c-divider-light-2);
+
+    --jaguar-c-text-1: var(--jaguar-c-text-dark-1);
+    --jaguar-c-text-2: var(--jaguar-c-text-dark-2);
+    --jaguar-c-text-3: var(--jaguar-c-text-dark-3);
+    --jaguar-c-text-4: var(--jaguar-c-text-dark-4);
+
+    --jaguar-c-text-inverse-1: var(--jaguar-c-text-light-1);
+    --jaguar-c-text-inverse-2: var(--jaguar-c-text-light-2);
+    --jaguar-c-text-inverse-3: var(--jaguar-c-text-light-3);
+    --jaguar-c-text-inverse-4: var(--jaguar-c-text-light-4);
+
+    --jaguar-c-text-code: var(--jaguar-c-indigo-lighter);
+}
+
+/**
+   * Typography
+   * -------------------------------------------------------------------------- */
+
+:root {
+    --jaguar-font-family-base: 'Inter var experimental', 'Inter var',
+        -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
+        Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    --jaguar-font-family-mono: Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+/**
+   * Layouts
+   * -------------------------------------------------------------------------- */
+
+:root {
+    --jaguar-layout-max-width: 1440px;
+}
+
+/**
+   * Component: Code
+   * -------------------------------------------------------------------------- */
+
+:root {
+    --jaguar-code-line-height: 1.7;
+    --jaguar-code-font-size: 0.875em;
+
+    --jaguar-code-block-color: var(--jaguar-c-text-dark-1);
+    --jaguar-code-block-bg: #292d3e;
+
+    --jaguar-code-line-highlight-color: rgba(0, 0, 0, 0.5);
+    --jaguar-code-line-number-color: var(--jaguar-c-text-dark-3);
+
+    --jaguar-code-copy-code-hover-bg: rgba(255, 255, 255, 0.05);
+    --jaguar-code-copy-code-active-text: var(--jaguar-c-text-dark-2);
+}
+
+/**
+   * Icons
+   * -------------------------------------------------------------------------- */
+
+:root {
+    --jaguar-icon-copy: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' height='20' width='20' stroke='rgba(128,128,128,1)' stroke-width='2' viewBox='0 0 24 24'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2M9 5a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2M9 5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2'/%3E%3C/svg%3E");
+    --jaguar-icon-copied: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' height='20' width='20' stroke='rgba(128,128,128,1)' stroke-width='2' viewBox='0 0 24 24'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2M9 5a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2M9 5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2m-6 9 2 2 4-4'/%3E%3C/svg%3E");
+    --jaguar-icon-tip: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 1024 1024' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M512 960C264.58 960 64 759.42 64 512S264.58 64 512 64s448 200.58 448 448-200.58 448-448 448z m0-832c-212.08 0-384 171.92-384 384s171.92 384 384 384 384-171.92 384-384-171.92-384-384-384z m0 112c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48z m0 160c-17.67 0-32 14.33-32 32v320c0 17.67 14.33 32 32 32 17.67 0 32-14.33 32-32V432c0-17.67-14.33-32-32-32z' fill='%2321b8a3'/%3E%3C/svg%3E");
+}
+
+.dark {
+    --jaguar-code-block-bg: var(--jaguar-c-bg-alt);
+}
+
+/**
+   * Z-indexes
+   * -------------------------------------------------------------------------- */
+
+:root {
+    --jaguar-z-index-local-nav: 10;
+    --jaguar-z-index-nav: 20;
+    --jaguar-z-index-layout-top: 30;
+    --jaguar-z-index-backdrop: 40;
+    --jaguar-z-index-sidebar: 50;
+    --jaguar-z-index-footer: 60;
+}
+
+/**
+   * Component: Button
+   * -------------------------------------------------------------------------- */
+
+:root {
+    --jaguar-button-brand-border: var(--jaguar-c-brand-light);
+    --jaguar-button-brand-text: var(--jaguar-c-text-dark-1);
+    --jaguar-button-brand-bg: var(--jaguar-c-brand);
+    --jaguar-button-brand-hover-border: var(--jaguar-c-brand-light);
+    --jaguar-button-brand-hover-text: var(--jaguar-c-text-dark-1);
+    --jaguar-button-brand-hover-bg: var(--jaguar-c-brand-light);
+    --jaguar-button-brand-active-border: var(--jaguar-c-brand-light);
+    --jaguar-button-brand-active-text: var(--jaguar-c-text-dark-1);
+    --jaguar-button-brand-active-bg: var(--jaguar-button-brand-bg);
+
+    --jaguar-button-alt-border: var(--jaguar-c-gray-light-3);
+    --jaguar-button-alt-text: var(--jaguar-c-text-light-1);
+    --jaguar-button-alt-bg: var(--jaguar-c-gray-light-5);
+    --jaguar-button-alt-hover-border: var(--jaguar-c-gray-light-3);
+    --jaguar-button-alt-hover-text: var(--jaguar-c-text-light-1);
+    --jaguar-button-alt-hover-bg: var(--jaguar-c-gray-light-4);
+    --jaguar-button-alt-active-border: var(--jaguar-c-gray-light-3);
+    --jaguar-button-alt-active-text: var(--jaguar-c-text-light-1);
+    --jaguar-button-alt-active-bg: var(--jaguar-c-gray-light-3);
+
+    --jaguar-button-sponsor-border: var(--jaguar-c-gray-light-3);
+    --jaguar-button-sponsor-text: var(--jaguar-c-text-light-2);
+    --jaguar-button-sponsor-bg: transparent;
+    --jaguar-button-sponsor-hover-border: var(--jaguar-c-sponsor);
+    --jaguar-button-sponsor-hover-text: var(--jaguar-c-sponsor);
+    --jaguar-button-sponsor-hover-bg: transparent;
+    --jaguar-button-sponsor-active-border: var(--jaguar-c-sponsor);
+    --jaguar-button-sponsor-active-text: var(--jaguar-c-sponsor);
+    --jaguar-button-sponsor-active-bg: transparent;
+}
+
+.dark {
+    --jaguar-button-brand-border: var(--jaguar-c-brand-light);
+    --jaguar-button-brand-text: var(--jaguar-c-text-dark-1);
+    --jaguar-button-brand-bg: var(--jaguar-c-brand-dark);
+    --jaguar-button-brand-hover-border: var(--jaguar-c-brand-lighter);
+    --jaguar-button-brand-hover-text: var(--jaguar-c-text-dark-1);
+    --jaguar-button-brand-hover-bg: var(--jaguar-c-brand);
+    --jaguar-button-brand-active-border: var(--jaguar-c-brand-lighter);
+    --jaguar-button-brand-active-text: var(--jaguar-c-text-dark-1);
+    --jaguar-button-brand-active-bg: var(--jaguar-button-brand-bg);
+
+    --jaguar-button-alt-border: var(--jaguar-c-gray-dark-2);
+    --jaguar-button-alt-text: var(--jaguar-c-text-dark-1);
+    --jaguar-button-alt-bg: var(--jaguar-c-bg-mute);
+    --jaguar-button-alt-hover-border: var(--jaguar-c-gray-dark-2);
+    --jaguar-button-alt-hover-text: var(--jaguar-c-text-dark-1);
+    --jaguar-button-alt-hover-bg: var(--jaguar-c-gray-dark-2);
+    --jaguar-button-alt-active-border: var(--jaguar-c-gray-dark-2);
+    --jaguar-button-alt-active-text: var(--jaguar-c-text-dark-1);
+    --jaguar-button-alt-active-bg: var(--jaguar-button-alt-bg);
+
+    --jaguar-button-sponsor-border: var(--jaguar-c-gray-dark-1);
+    --jaguar-button-sponsor-text: var(--jaguar-c-text-dark-2);
+}
+
+/**
+   * Component: Custom Block
+   * -------------------------------------------------------------------------- */
+
+:root {
+    --jaguar-custom-block-code-font-size: 13px;
+
+    --jaguar-custom-block-info-border: var(--jaguar-c-divider-light);
+    --jaguar-custom-block-info-text: var(--jaguar-c-text-2);
+    --jaguar-custom-block-info-bg: var(--jaguar-c-white-soft);
+    --jaguar-custom-block-info-code-bg: var(--jaguar-c-gray-light-4);
+
+    --jaguar-custom-block-tip-border: var(--jaguar-c-green-dimm-1);
+    --jaguar-custom-block-tip-text: var(--jaguar-c-green-darker);
+    --jaguar-custom-block-tip-bg: var(--jaguar-c-green-dimm-3);
+    --jaguar-custom-block-tip-code-bg: var(--jaguar-custom-block-tip-bg);
+
+    --jaguar-custom-block-warning-border: var(--jaguar-c-yellow-dimm-1);
+    --jaguar-custom-block-warning-text: var(--jaguar-c-yellow-darker);
+    --jaguar-custom-block-warning-bg: var(--jaguar-c-yellow-dimm-3);
+    --jaguar-custom-block-warning-code-bg: var(--jaguar-custom-block-warning-bg);
+
+    --jaguar-custom-block-danger-border: var(--jaguar-c-red-dimm-1);
+    --jaguar-custom-block-danger-text: var(--jaguar-c-red-darker);
+    --jaguar-custom-block-danger-bg: var(--jaguar-c-red-dimm-3);
+    --jaguar-custom-block-danger-code-bg: var(--jaguar-custom-block-danger-bg);
+}
+
+.dark {
+    --jaguar-custom-block-info-border: var(--jaguar-c-divider-light);
+    --jaguar-custom-block-info-bg: var(--jaguar-c-black-mute);
+    --jaguar-custom-block-info-code-bg: var(--jaguar-c-gray-dark-4);
+
+    --jaguar-custom-block-tip-border: var(--jaguar-c-green-dimm-2);
+    --jaguar-custom-block-tip-text: var(--jaguar-c-green-light);
+
+    --jaguar-custom-block-warning-border: var(--jaguar-c-yellow-dimm-2);
+    --jaguar-custom-block-warning-text: var(--jaguar-c-yellow-light);
+
+    --jaguar-custom-block-danger-border: var(--jaguar-c-red-dimm-2);
+    --jaguar-custom-block-danger-text: var(--jaguar-c-red-light);
+}
+
+/**
+   * Component: Nav
+   * -------------------------------------------------------------------------- */
+
+:root {
+    --jaguar-nav-height: 56px;
+}
+
+/**
+   * Component: Sidebar
+   * -------------------------------------------------------------------------- */
+
+:root {
+    --jaguar-sidebar-width: 272px;
+}
+
+/**
+   * Component: Home
+   * -------------------------------------------------------------------------- */
+
+:root {
+    --jaguar-home-hero-name-color: transparent;
+    --jaguar-home-hero-name-background: -webkit-linear-gradient(120deg,
+            var(--jaguar-c-brand) 30%,
+            #41d1ff);
+
+    --jaguar-home-hero-image-background-image: none;
+    --jaguar-home-hero-image-filter: none;
+}
+
+/**
+   * Shadows
+   * -------------------------------------------------------------------------- */
+
+:root {
+    --jaguar-shadow-1: 0 1px 2px rgba(0, 0, 0, 0.04),
+        0 1px 2px rgba(0, 0, 0, 0.06);
+    --jaguar-shadow-2: 0 3px 12px rgba(0, 0, 0, 0.07),
+        0 1px 4px rgba(0, 0, 0, 0.07);
+    --jaguar-shadow-3: 0 12px 32px rgba(0, 0, 0, 0.1),
+        0 2px 6px rgba(0, 0, 0, 0.08);
+    --jaguar-shadow-4: 0 14px 44px rgba(0, 0, 0, 0.12),
+        0 3px 9px rgba(0, 0, 0, 0.12);
+    --jaguar-shadow-5: 0 18px 56px rgba(0, 0, 0, 0.16),
+        0 4px 12px rgba(0, 0, 0, 0.16);
+}

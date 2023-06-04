@@ -27,10 +27,10 @@ describe('Markdown compile cases', async () => {
   });
 
   test('Compile code', async () => {
-    const mdContent = 'I am using `Island.js`';
+    const mdContent = 'I am using `jaguar.js`';
     const result = processor.processSync(mdContent);
     expect(result.value).toMatchInlineSnapshot(
-      '"<p>I am using <code>Island.js</code></p>"'
+      '"<p>I am using <code>jaguar.js</code></p>"'
     );
   });
 
@@ -48,7 +48,7 @@ describe('Markdown compile cases', async () => {
 
 ## h2 \`code\`
 
-### h3 [link](https://islandjs.dev)
+### h3 [link](https://jaguarjs.dev)
 
 #### h4
 
