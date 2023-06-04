@@ -3,7 +3,7 @@ import { NavItemWithLink } from 'shared/types';
 import { usePageData } from '@runtime';
 import { SwitchAppearance } from '../SwitchAppearance';
 
-export function MenuItem(item: NavItemWithLink) {
+export function MenuItem({ item }: { item: NavItemWithLink }) {
   return (
     <div className="text-sm font-medium mx-3">
       <a href={item.link} className={styles.link}>
@@ -30,14 +30,14 @@ export function Nav() {
             hover="opacity-60"
             className="w-full h-full text-1rem font-semibold flex items-center"
           >
-            Jaguar.js
+            Island.js
           </a>
         </div>
         <div flex="~">
           {/* 普通菜单 */}
           <div flex="~">
             {nav.map((item) => (
-              <MenuItem {...item} key={item.text} />
+              <MenuItem item={item} key={item.text} />
             ))}
           </div>
 
@@ -45,8 +45,9 @@ export function Nav() {
           <div before="menu-item-before" flex="~">
             <SwitchAppearance />
           </div>
+
           {/* 相关链接 */}
-          <div className={styles.socialLinkIcon} ml="2">
+          <div className={styles.socialLinkIcon} before="menu-item-before">
             <a href="/">
               <div className="i-carbon-logo-github w-5 h-5 fill-current"></div>
             </a>
