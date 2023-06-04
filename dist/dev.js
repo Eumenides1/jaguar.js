@@ -1,7 +1,7 @@
 "use strict";Object.defineProperty(exports, "__esModule", {value: true});
 
 
-var _chunkRUWJWCFXjs = require('./chunk-RUWJWCFX.js');
+var _chunkNOOI46B2js = require('./chunk-NOOI46B2.js');
 
 
 var _chunkEH4W5WKDjs = require('./chunk-EH4W5WKD.js');
@@ -12,11 +12,11 @@ async function createDevServer(root, restartServer) {
   const config = await _chunkEH4W5WKDjs.resolveConfig.call(void 0, root, "serve", "development");
   console.log(config);
   return _vite.createServer.call(void 0, {
-    root: _chunkRUWJWCFXjs.PACKAGE_ROOT,
-    plugins: await _chunkRUWJWCFXjs.createVitePlugins.call(void 0, config, restartServer),
+    root: _chunkNOOI46B2js.PACKAGE_ROOT,
+    plugins: await _chunkNOOI46B2js.createVitePlugins.call(void 0, config, restartServer),
     server: {
       fs: {
-        allow: [_chunkRUWJWCFXjs.PACKAGE_ROOT]
+        allow: [_chunkNOOI46B2js.PACKAGE_ROOT]
       }
     }
   });
