@@ -61,7 +61,7 @@ export async function resolveConfig(
 
 export function resolveSiteData(userConfig: UserConfig): UserConfig {
   return {
-    title: userConfig.title || 'Island.js',
+    title: userConfig.title || 'jaguar.js',
     description: userConfig.description || 'SSG Framework',
     themeConfig: userConfig.themeConfig || {},
     vite: userConfig.vite || {}

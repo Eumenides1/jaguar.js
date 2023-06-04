@@ -2,10 +2,10 @@ import {
   CLIENT_ENTRY_PATH,
   SERVER_ENTRY_PATH,
   pluginConfig
-} from "./chunk-E26JCFVC.mjs";
+} from "./chunk-7NKOWZKI.mjs";
 import {
   resolveConfig
-} from "./chunk-XICRIFJC.mjs";
+} from "./chunk-2MN52ALU.mjs";
 
 // src/node/cli.ts
 import cac from "cac";

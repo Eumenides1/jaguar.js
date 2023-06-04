@@ -1,4 +1,5 @@
 import { Content } from '@runtime';
+import React from 'react';
 export function Layout() {
   return (
     <div>

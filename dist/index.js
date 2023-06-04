@@ -1,6 +1,6 @@
 "use strict";Object.defineProperty(exports, "__esModule", {value: true});
 
-var _chunk54BAVARBjs = require('./chunk-54BAVARB.js');
+var _chunkEH4W5WKDjs = require('./chunk-EH4W5WKD.js');
 
 
-exports.defineConfig = _chunk54BAVARBjs.defineConfig;
+exports.defineConfig = _chunkEH4W5WKDjs.defineConfig;

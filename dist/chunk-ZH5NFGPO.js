@@ -21,7 +21,7 @@ var SERVER_ENTRY_PATH = _path.join.call(void 0,
 var SITE_DATA_ID = "jaguar:site-data";
 function pluginConfig(config, restartServer) {
   return {
-    name: "island:config",
+    name: "jaguar:config",
     resolveId(id) {
       if (id === SITE_DATA_ID) {
         return "\0" + SITE_DATA_ID;

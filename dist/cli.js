@@ -2,10 +2,10 @@
 
 
 
-var _chunkMCJ6EW4Ljs = require('./chunk-MCJ6EW4L.js');
+var _chunkZH5NFGPOjs = require('./chunk-ZH5NFGPO.js');
 
 
-var _chunk54BAVARBjs = require('./chunk-54BAVARB.js');
+var _chunkEH4W5WKDjs = require('./chunk-EH4W5WKD.js');
 
 // src/node/cli.ts
 var _cac = require('cac'); var _cac2 = _interopRequireDefault(_cac);
@@ -19,7 +19,7 @@ async function bundle(root, config) {
   const resolveViteConfig = (isServer) => ({
     mode: "production",
     root,
-    plugins: [_pluginreact2.default.call(void 0, ), _chunkMCJ6EW4Ljs.pluginConfig.call(void 0, config)],
+    plugins: [_pluginreact2.default.call(void 0, ), _chunkZH5NFGPOjs.pluginConfig.call(void 0, config)],
     ssr: {
       noExternal: ["react-router-dom"]
     },
@@ -28,7 +28,7 @@ async function bundle(root, config) {
       ssr: isServer,
       outDir: isServer ? _path2.default.join(root, ".temp") : "build",
       rollupOptions: {
-        input: isServer ? _chunkMCJ6EW4Ljs.SERVER_ENTRY_PATH : _chunkMCJ6EW4Ljs.CLIENT_ENTRY_PATH,
+        input: isServer ? _chunkZH5NFGPOjs.SERVER_ENTRY_PATH : _chunkZH5NFGPOjs.CLIENT_ENTRY_PATH,
         output: {
           format: isServer ? "cjs" : "esm"
         }
@@ -100,7 +100,7 @@ cli.command("dev [root]", "start dev server").action(async (root) => {
 cli.command("build [root]", "build in production").action(async (root) => {
   try {
     root = _path.resolve.call(void 0, root);
-    const config = await _chunk54BAVARBjs.resolveConfig.call(void 0, root, "build", "production");
+    const config = await _chunkEH4W5WKDjs.resolveConfig.call(void 0, root, "build", "production");
     await build(root, config);
   } catch (e) {
     console.log(e);

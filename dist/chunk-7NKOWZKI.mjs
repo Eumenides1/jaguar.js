@@ -1,6 +1,6 @@
 import {
   __dirname
-} from "./chunk-XICRIFJC.mjs";
+} from "./chunk-2MN52ALU.mjs";
 
 // src/node/constants/index.ts
 import { join } from "path";
@@ -25,7 +25,7 @@ import { join as join2 } from "path";
 var SITE_DATA_ID = "jaguar:site-data";
 function pluginConfig(config, restartServer) {
   return {
-    name: "island:config",
+    name: "jaguar:config",
     resolveId(id) {
       if (id === SITE_DATA_ID) {
         return "\0" + SITE_DATA_ID;
