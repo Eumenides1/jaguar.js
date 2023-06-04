@@ -1,0 +1,402 @@
+/**
+ * Headings
+ * -------------------------------------------------------------------------- */
+
+.jaguar-doc h1,
+.jaguar-doc h2,
+.jaguar-doc h3,
+.jaguar-doc h4,
+.jaguar-doc h5,
+.jaguar-doc h6 {
+    position: relative;
+    font-weight: 600;
+    outline: none;
+}
+
+.jaguar-doc h1 {
+    letter-spacing: -0.02em;
+    line-height: 40px;
+    font-size: 28px;
+    margin-bottom: 40px;
+}
+
+.jaguar-doc h2 {
+    margin: 48px 0 16px;
+    /* padding-top: 24px; */
+    letter-spacing: -0.02em;
+    line-height: 32px;
+    font-size: 24px;
+}
+
+.jaguar-doc h3 {
+    margin: 32px 0 0;
+    letter-spacing: -0.01em;
+    line-height: 28px;
+    font-size: 20px;
+}
+
+.jaguar-doc .header-anchor {
+    float: left;
+    margin-left: -0.87em;
+    padding-right: 0.23em;
+    font-weight: 500;
+    opacity: 0;
+    transition: color 0.25s, opacity 0.25s;
+}
+
+.jaguar-doc h1:hover .header-anchor,
+.jaguar-doc h1 .header-anchor:focus,
+.jaguar-doc h2:hover .header-anchor,
+.jaguar-doc h2 .header-anchor:focus,
+.jaguar-doc h3:hover .header-anchor,
+.jaguar-doc h3 .header-anchor:focus,
+.jaguar-doc h4:hover .header-anchor,
+.jaguar-doc h4 .header-anchor:focus,
+.jaguar-doc h5:hover .header-anchor,
+.jaguar-doc h5 .header-anchor:focus,
+.jaguar-doc h6:hover .header-anchor,
+.jaguar-doc h6 .header-anchor:focus {
+    opacity: 1;
+}
+
+@media (min-width: 768px) {
+    .jaguar-doc h1 {
+        letter-spacing: -0.02em;
+        line-height: 40px;
+        font-size: 32px;
+    }
+}
+
+/**
+    * Paragraph and inline elements
+    * -------------------------------------------------------------------------- */
+
+.jaguar-doc p,
+.jaguar-doc summary {
+    margin: 16px 0;
+}
+
+.jaguar-doc p {
+    z-index: 2;
+    line-height: 28px;
+}
+
+.jaguar-doc blockquote {
+    margin: 16px 0;
+    border-left: 2px solid var(--jaguar-c-divider);
+    padding-left: 16px;
+    transition: border-color 0.5s;
+}
+
+.jaguar-doc blockquote>p {
+    margin: 0;
+    font-size: 16px;
+    color: var(--jaguar-c-text-2);
+    transition: color 0.5s;
+}
+
+.jaguar-doc a {
+    font-weight: 500;
+    color: var(--jaguar-c-brand);
+    text-decoration-style: dotted;
+    transition: color 0.25s;
+}
+
+.jaguar-doc a:hover {
+    color: var(--jaguar-c-brand-dark);
+}
+
+.jaguar-doc strong {
+    font-weight: 600;
+}
+
+/**
+    * Lists
+    * -------------------------------------------------------------------------- */
+
+.jaguar-doc ul,
+.jaguar-doc ol {
+    padding-left: 1.25rem;
+    margin: 16px 0;
+}
+
+.jaguar-doc ul {
+    list-style: disc;
+}
+
+.jaguar-doc ol {
+    list-style: decimal;
+}
+
+.jaguar-doc li+li {
+    margin-top: 8px;
+}
+
+.jaguar-doc li>ol,
+.jaguar-doc li>ul {
+    margin: 8px 0 0;
+}
+
+/**
+    * Table
+    * -------------------------------------------------------------------------- */
+
+.jaguar-doc table {
+    display: block;
+    border-collapse: collapse;
+    margin: 20px 0;
+    overflow-x: auto;
+}
+
+.jaguar-doc tr {
+    border-top: 1px solid var(--jaguar-c-divider);
+    transition: background-color 0.5s;
+}
+
+.jaguar-doc tr:nth-child(2n) {
+    background-color: var(--jaguar-c-bg-soft);
+}
+
+.jaguar-doc th,
+.jaguar-doc td {
+    border: 1px solid var(--jaguar-c-divider);
+    padding: 12px 16px;
+}
+
+.jaguar-doc th {
+    font-size: 16px;
+    font-weight: 600;
+    background-color: var(--jaguar-c-white-soft);
+}
+
+.dark .jaguar-doc th {
+    background-color: var(--jaguar-c-black);
+}
+
+/**
+    * Decorational elements
+    * -------------------------------------------------------------------------- */
+
+.jaguar-doc hr {
+    margin: 16px 0;
+    border: none;
+    border-top: 1px solid var(--jaguar-c-divider-light);
+}
+
+/**
+    * Custom Block
+    * -------------------------------------------------------------------------- */
+
+.jaguar-doc .custom-block {
+    margin: 16px 0;
+}
+
+.jaguar-doc .custom-block p {
+    margin: 8px 0;
+    line-height: 24px;
+}
+
+.jaguar-doc .custom-block p:first-child {
+    margin: 0;
+}
+
+.jaguar-doc .custom-block a {
+    color: inherit;
+    font-weight: 600;
+    text-decoration: underline;
+    transition: opacity 0.25s;
+}
+
+.jaguar-doc .custom-block a:hover {
+    opacity: 0.6;
+}
+
+.jaguar-doc .custom-block code {
+    font-size: var(--jaguar-custom-block-code-font-size);
+    font-weight: 700;
+    color: inherit;
+}
+
+.jaguar-doc .custom-block div[class*='language-'] {
+    margin: 8px 0;
+}
+
+.jaguar-doc .custom-block div[class*='language-'] code {
+    font-weight: 400;
+    background-color: transparent;
+}
+
+/**
+    * Code
+    * -------------------------------------------------------------------------- */
+
+/* inline code */
+.jaguar-doc :not(pre, h1, h2, h3, h4, h5, h6)>code {
+    font-size: var(--jaguar-code-font-size);
+}
+
+.jaguar-doc :not(pre, div)>code {
+    border-radius: 4px;
+    padding: 3px 6px;
+    color: var(--jaguar-c-text-code);
+    background-color: var(--jaguar-c-bg-mute);
+    transition: color 0.5s, background-color 0.5s;
+}
+
+.jaguar-doc h1>code,
+.jaguar-doc h2>code,
+.jaguar-doc h3>code {
+    font-size: 0.9em;
+}
+
+.jaguar-doc a>code {
+    color: var(--jaguar-c-brand);
+    transition: color 0.25s;
+}
+
+.jaguar-doc a:hover>code {
+    color: var(--jaguar-c-brand-dark);
+}
+
+.jaguar-doc div[class*='language-'] {
+    position: relative;
+    margin: 16px -24px;
+    background-color: var(--jaguar-code-block-bg);
+    overflow-x: auto;
+    transition: background-color 0.5s;
+}
+
+@media (min-width: 640px) {
+    .jaguar-doc div[class*='language-'] {
+        border-radius: 8px;
+        margin: 16px 0;
+    }
+}
+
+@media (max-width: 639px) {
+    .jaguar-doc li div[class*='language-'] {
+        border-radius: 8px 0 0 8px;
+    }
+}
+
+.jaguar-doc div[class*='language-']+div[class*='language-'],
+.jaguar-doc div[class$='-api']+div[class*='language-'],
+.jaguar-doc div[class*='language-']+div[class$='-api']>div[class*='language-'] {
+    margin-top: -8px;
+}
+
+.jaguar-doc [class*='language-'] pre,
+.jaguar-doc [class*='language-'] code {
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+}
+
+.jaguar-doc [class*='language-'] pre {
+    position: relative;
+    z-index: 1;
+    margin: 0;
+    padding: 16px 0;
+    background: transparent;
+    overflow-x: auto;
+}
+
+.jaguar-doc [class*='language-'] code {
+    display: block;
+    padding: 0 24px;
+    width: fit-content;
+    min-width: 100%;
+    line-height: var(--jaguar-code-line-height);
+    font-size: var(--jaguar-code-font-size);
+    color: var(--jaguar-code-block-color);
+    transition: color 0.5s;
+}
+
+.jaguar-doc [class*='language-'] code .highlighted {
+    background-color: var(--jaguar-code-line-highlight-color);
+    transition: background-color 0.5s;
+    margin: 0 -24px;
+    padding: 0 24px;
+    width: calc(100% + 2 * 24px);
+    display: inline-block;
+}
+
+.jaguar-doc [class*='language-']>button.copy {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 3;
+    display: block;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    width: 40px;
+    height: 40px;
+    background-color: var(--jaguar-code-block-bg);
+    opacity: 0;
+    cursor: pointer;
+    background-image: var(--jaguar-icon-copy);
+    background-position: 50%;
+    background-size: 20px;
+    background-repeat: no-repeat;
+    transition: opacity 0.4s;
+}
+
+.jaguar-doc [class*='language-']:hover>button.copy,
+.jaguar-doc [class*='language-']>button.copy:focus {
+    opacity: 1;
+}
+
+.jaguar-doc [class*='language-']>button.copy:hover {
+    background-color: var(--jaguar-code-copy-code-hover-bg);
+}
+
+.jaguar-doc [class*='language-']>button.copy.copied,
+.jaguar-doc [class*='language-']>button.copy:hover.copied {
+    border-radius: 0 4px 4px 0;
+    background-color: var(--jaguar-code-copy-code-hover-bg);
+    background-image: var(--jaguar-icon-copied);
+}
+
+.jaguar-doc [class*='language-']>button.copy.copied::before,
+.jaguar-doc [class*='language-']>button.copy:hover.copied::before {
+    position: relative;
+    left: -65px;
+    display: block;
+    border-radius: 4px 0 0 4px;
+    padding-top: 8px;
+    width: 64px;
+    height: 40px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--jaguar-code-copy-code-active-text);
+    background-color: var(--jaguar-code-copy-code-hover-bg);
+    white-space: nowrap;
+    content: 'Copied';
+}
+
+.jaguar-doc [class*='language-']>span.lang {
+    position: absolute;
+    top: 6px;
+    right: 12px;
+    z-index: 2;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--jaguar-c-text-dark-3);
+    transition: color 0.4s, opacity 0.4s;
+}
+
+.jaguar-doc [class*='language-']:hover>button.copy+span.lang,
+.jaguar-doc [class*='language-']>button.copy:focus+span.lang {
+    opacity: 0;
+}

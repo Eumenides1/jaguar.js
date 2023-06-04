@@ -1,4 +1,4 @@
-import { defineConfig } from "../dist"
+import { defineConfig } from '../dist';
 
 export default defineConfig({
     title: 'xxx',
@@ -19,6 +19,10 @@ export default defineConfig({
                         {
                             text: '如何安装',
                             link: '/guide/b'
+                        },
+                        {
+                            text: '注意事项',
+                            link: '/guide/c'
                         }
                     ]
                 }
