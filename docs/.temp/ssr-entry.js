@@ -1,8 +1,7 @@
 "use strict";
 Object.defineProperty(exports, Symbol.toStringTag, { value: "Module" });
-const jsxRuntime = require("react/jsx-runtime");
 const React = require("react");
-const loadable = require("@loadable/component");
+const jsxRuntime = require("react/jsx-runtime");
 const server = require("react-dom/server");
 function _interopNamespaceDefault(e) {
   const n = Object.create(null, { [Symbol.toStringTag]: { value: "Module" } });
@@ -21,6 +20,7 @@ function _interopNamespaceDefault(e) {
   return Object.freeze(n);
 }
 const React__namespace = /* @__PURE__ */ _interopNamespaceDefault(React);
+const jsxRuntime__namespace = /* @__PURE__ */ _interopNamespaceDefault(jsxRuntime);
 /**
  * @remix-run/router v1.6.2
  *
@@ -348,6 +348,9 @@ const validMutationMethodsArr = ["post", "put", "patch", "delete"];
 new Set(validMutationMethodsArr);
 const validRequestMethodsArr = ["get", ...validMutationMethodsArr];
 new Set(validRequestMethodsArr);
+const Fragment = jsxRuntime__namespace.Fragment;
+const jsx = jsxRuntime__namespace.jsx;
+const jsxs = jsxRuntime__namespace.jsxs;
 /**
  * React Router v6.11.2
  *
@@ -476,7 +479,7 @@ function useRoutesImpl(routes2, locationArg, dataRouterState) {
     ])
   })), parentMatches, dataRouterState);
   if (locationArg && renderedMatches) {
-    return /* @__PURE__ */ React__namespace.createElement(LocationContext.Provider, {
+    return /* @__PURE__ */ jsx(LocationContext.Provider, {
       value: {
         location: _extends({
           pathname: "/",
@@ -486,8 +489,9 @@ function useRoutesImpl(routes2, locationArg, dataRouterState) {
           key: "default"
         }, location),
         navigationType: Action.Pop
-      }
-    }, renderedMatches);
+      },
+      children: renderedMatches
+    });
   }
   return renderedMatches;
 }
@@ -507,21 +511,35 @@ function DefaultErrorComponent() {
   let devInfo = null;
   if (process.env.NODE_ENV !== "production") {
     console.error("Error handled by React Router default ErrorBoundary:", error);
-    devInfo = /* @__PURE__ */ React__namespace.createElement(React__namespace.Fragment, null, /* @__PURE__ */ React__namespace.createElement("p", null, "💿 Hey developer 👋"), /* @__PURE__ */ React__namespace.createElement("p", null, "You can provide a way better UX than this when your app throws errors by providing your own ", /* @__PURE__ */ React__namespace.createElement("code", {
-      style: codeStyles
-    }, "ErrorBoundary"), " or", " ", /* @__PURE__ */ React__namespace.createElement("code", {
-      style: codeStyles
-    }, "errorElement"), " prop on your route."));
+    devInfo = /* @__PURE__ */ jsxs(Fragment, {
+      children: [/* @__PURE__ */ jsx("p", {
+        children: "💿 Hey developer 👋"
+      }), /* @__PURE__ */ jsxs("p", {
+        children: ["You can provide a way better UX than this when your app throws errors by providing your own ", /* @__PURE__ */ jsx("code", {
+          style: codeStyles,
+          children: "ErrorBoundary"
+        }), " or", " ", /* @__PURE__ */ jsx("code", {
+          style: codeStyles,
+          children: "errorElement"
+        }), " prop on your route."]
+      })]
+    });
   }
-  return /* @__PURE__ */ React__namespace.createElement(React__namespace.Fragment, null, /* @__PURE__ */ React__namespace.createElement("h2", null, "Unexpected Application Error!"), /* @__PURE__ */ React__namespace.createElement("h3", {
-    style: {
-      fontStyle: "italic"
-    }
-  }, message), stack ? /* @__PURE__ */ React__namespace.createElement("pre", {
-    style: preStyles
-  }, stack) : null, devInfo);
+  return /* @__PURE__ */ jsxs(Fragment, {
+    children: [/* @__PURE__ */ jsx("h2", {
+      children: "Unexpected Application Error!"
+    }), /* @__PURE__ */ jsx("h3", {
+      style: {
+        fontStyle: "italic"
+      },
+      children: message
+    }), stack ? /* @__PURE__ */ jsx("pre", {
+      style: preStyles,
+      children: stack
+    }) : null, devInfo]
+  });
 }
-const defaultErrorElement = /* @__PURE__ */ React__namespace.createElement(DefaultErrorComponent, null);
+const defaultErrorElement = /* @__PURE__ */ jsx(DefaultErrorComponent, {});
 class RenderErrorBoundary extends React__namespace.Component {
   constructor(props) {
     super(props);
@@ -554,12 +572,13 @@ class RenderErrorBoundary extends React__namespace.Component {
     console.error("React Router caught the following error during render", error, errorInfo);
   }
   render() {
-    return this.state.error ? /* @__PURE__ */ React__namespace.createElement(RouteContext.Provider, {
-      value: this.props.routeContext
-    }, /* @__PURE__ */ React__namespace.createElement(RouteErrorContext.Provider, {
-      value: this.state.error,
-      children: this.props.component
-    })) : this.props.children;
+    return this.state.error ? /* @__PURE__ */ jsx(RouteContext.Provider, {
+      value: this.props.routeContext,
+      children: /* @__PURE__ */ jsx(RouteErrorContext.Provider, {
+        value: this.state.error,
+        children: this.props.component
+      })
+    }) : this.props.children;
   }
 }
 function RenderedRoute(_ref) {
@@ -572,9 +591,10 @@ function RenderedRoute(_ref) {
   if (dataRouterContext && dataRouterContext.static && dataRouterContext.staticContext && (match.route.errorElement || match.route.ErrorBoundary)) {
     dataRouterContext.staticContext._deepestRenderedBoundaryId = match.route.id;
   }
-  return /* @__PURE__ */ React__namespace.createElement(RouteContext.Provider, {
-    value: routeContext
-  }, children);
+  return /* @__PURE__ */ jsx(RouteContext.Provider, {
+    value: routeContext,
+    children
+  });
 }
 function _renderMatches(matches, parentMatches, dataRouterState) {
   var _dataRouterState2;
@@ -617,7 +637,7 @@ function _renderMatches(matches, parentMatches, dataRouterState) {
       } else {
         children = outlet;
       }
-      return /* @__PURE__ */ React__namespace.createElement(RenderedRoute, {
+      return /* @__PURE__ */ jsx(RenderedRoute, {
         match,
         routeContext: {
           outlet,
@@ -627,7 +647,7 @@ function _renderMatches(matches, parentMatches, dataRouterState) {
         children
       });
     };
-    return dataRouterState && (match.route.ErrorBoundary || match.route.errorElement || index === 0) ? /* @__PURE__ */ React__namespace.createElement(RenderErrorBoundary, {
+    return dataRouterState && (match.route.ErrorBoundary || match.route.errorElement || index === 0) ? /* @__PURE__ */ jsx(RenderErrorBoundary, {
       location: dataRouterState.location,
       revalidation: dataRouterState.revalidation,
       component: errorElement,
@@ -742,12 +762,13 @@ function Router(_ref5) {
   if (locationContext == null) {
     return null;
   }
-  return /* @__PURE__ */ React__namespace.createElement(NavigationContext.Provider, {
-    value: navigationContext
-  }, /* @__PURE__ */ React__namespace.createElement(LocationContext.Provider, {
-    children,
-    value: locationContext
-  }));
+  return /* @__PURE__ */ jsx(NavigationContext.Provider, {
+    value: navigationContext,
+    children: /* @__PURE__ */ jsx(LocationContext.Provider, {
+      children,
+      value: locationContext
+    })
+  });
 }
 var AwaitRenderStatus;
 (function(AwaitRenderStatus2) {
@@ -757,15 +778,647 @@ var AwaitRenderStatus;
 })(AwaitRenderStatus || (AwaitRenderStatus = {}));
 new Promise(() => {
 });
-const Route0 = loadable(() => Promise.resolve().then(() => require("./assets/b-cdf1d954.js")));
-const Route1 = loadable(() => Promise.resolve().then(() => require("./assets/a-a7c615da.js")));
-const Route2 = loadable(() => Promise.resolve().then(() => require("./assets/index-0d557886.js")));
-const Route3 = loadable(() => Promise.resolve().then(() => require("./assets/index-fbe3edb8.js")));
+function Counter() {
+  const [count, setCount] = React.useState(0);
+  return /* @__PURE__ */ jsxs("div", {
+    children: [/* @__PURE__ */ jsx("p", {
+      children: count
+    }), /* @__PURE__ */ jsx("button", {
+      onClick: () => setCount((count2) => count2 + 1),
+      children: "点击加1"
+    })]
+  });
+}
+function B() {
+  return /* @__PURE__ */ jsx("div", {
+    children: "Hello, route B"
+  });
+}
+function A() {
+  return /* @__PURE__ */ jsx("div", {
+    children: "Hello, route A"
+  });
+}
+function Index() {
+  return /* @__PURE__ */ jsx("div", {
+    children: /* @__PURE__ */ jsx("h1", {
+      children: "Index"
+    })
+  });
+}
+function _createMdxContent(props) {
+  const _components = Object.assign({
+    h1: "h1",
+    a: "a",
+    p: "p",
+    h2: "h2",
+    sup: "sup",
+    del: "del",
+    table: "table",
+    thead: "thead",
+    tr: "tr",
+    th: "th",
+    tbody: "tbody",
+    td: "td",
+    ul: "ul",
+    li: "li",
+    input: "input",
+    div: "div",
+    span: "span",
+    pre: "pre",
+    code: "code",
+    section: "section",
+    ol: "ol"
+  }, props.components);
+  return jsxs(Fragment, {
+    children: [jsx(Counter, {}), "\n", jsxs(_components.h1, {
+      id: "gfm",
+      children: [jsx(_components.a, {
+        className: "header-anchor",
+        href: "#gfm",
+        children: "#"
+      }), "GFM"]
+    }), "\n", jsx(_components.p, {
+      children: "228"
+    }), "\n", jsxs(_components.h2, {
+      id: "autolink-literals",
+      children: [jsx(_components.a, {
+        className: "header-anchor",
+        href: "#autolink-literals",
+        children: "#"
+      }), "Autolink literals"]
+    }), "\n", jsxs(_components.p, {
+      children: [jsx(_components.a, {
+        href: "http://www.example.com",
+        children: "www.example.com"
+      }), ", ", jsx(_components.a, {
+        href: "https://example.com",
+        children: "https://example.com"
+      }), ", and ", jsx(_components.a, {
+        href: "mailto:contact@example.com",
+        children: "contact@example.com"
+      }), "."]
+    }), "\n", jsxs(_components.h2, {
+      id: "footnote",
+      children: [jsx(_components.a, {
+        className: "header-anchor",
+        href: "#footnote",
+        children: "#"
+      }), "Footnote"]
+    }), "\n", jsxs(_components.p, {
+      children: ["A note", jsx(_components.sup, {
+        children: jsx(_components.a, {
+          href: "#user-content-fn-1",
+          id: "user-content-fnref-1",
+          "data-footnote-ref": true,
+          "aria-describedby": "footnote-label",
+          children: "1"
+        })
+      })]
+    }), "\n", jsxs(_components.h2, {
+      id: "strikethrough",
+      children: [jsx(_components.a, {
+        className: "header-anchor",
+        href: "#strikethrough",
+        children: "#"
+      }), "Strikethrough"]
+    }), "\n", jsxs(_components.p, {
+      children: [jsx(_components.del, {
+        children: "one"
+      }), " or ", jsx(_components.del, {
+        children: "two"
+      }), " tildes."]
+    }), "\n", jsxs(_components.h2, {
+      id: "table",
+      children: [jsx(_components.a, {
+        className: "header-anchor",
+        href: "#table",
+        children: "#"
+      }), "Table"]
+    }), "\n", jsxs(_components.table, {
+      children: [jsx(_components.thead, {
+        children: jsxs(_components.tr, {
+          children: [jsx(_components.th, {
+            children: "a"
+          }), jsx(_components.th, {
+            align: "left",
+            children: "b"
+          }), jsx(_components.th, {
+            align: "right",
+            children: "c"
+          }), jsx(_components.th, {
+            align: "center",
+            children: "d"
+          })]
+        })
+      }), jsx(_components.tbody, {
+        children: jsxs(_components.tr, {
+          children: [jsx(_components.td, {
+            children: "1"
+          }), jsx(_components.td, {
+            align: "left",
+            children: "2"
+          }), jsx(_components.td, {
+            align: "right",
+            children: "3"
+          }), jsx(_components.td, {
+            align: "center",
+            children: "4"
+          })]
+        })
+      })]
+    }), "\n", jsxs(_components.h2, {
+      id: "tasklist",
+      children: [jsx(_components.a, {
+        className: "header-anchor",
+        href: "#tasklist",
+        children: "#"
+      }), "Tasklist"]
+    }), "\n", jsxs(_components.ul, {
+      className: "contains-task-list",
+      children: ["\n", jsxs(_components.li, {
+        className: "task-list-item",
+        children: [jsx(_components.input, {
+          type: "checkbox",
+          disabled: true
+        }), " ", "to do"]
+      }), "\n", jsxs(_components.li, {
+        className: "task-list-item",
+        children: [jsx(_components.input, {
+          type: "checkbox",
+          checked: true,
+          disabled: true
+        }), " ", "done"]
+      }), "\n", jsxs(_components.li, {
+        className: "task-list-item",
+        children: [jsx(_components.input, {
+          type: "checkbox",
+          disabled: true
+        }), " ", "to do"]
+      }), "\n", jsxs(_components.li, {
+        className: "task-list-item",
+        children: [jsx(_components.input, {
+          type: "checkbox",
+          checked: true,
+          disabled: true
+        }), " ", "done"]
+      }), "\n", jsxs(_components.li, {
+        className: "task-list-item",
+        children: [jsx(_components.input, {
+          type: "checkbox",
+          checked: true,
+          disabled: true
+        }), " ", "done"]
+      }), "\n", jsxs(_components.li, {
+        className: "task-list-item",
+        children: [jsx(_components.input, {
+          type: "checkbox",
+          checked: true,
+          disabled: true
+        }), " ", "done"]
+      }), "\n", jsxs(_components.li, {
+        className: "task-list-item",
+        children: [jsx(_components.input, {
+          type: "checkbox",
+          checked: true,
+          disabled: true
+        }), " ", "done"]
+      }), "\n", jsxs(_components.li, {
+        className: "task-list-item",
+        children: [jsx(_components.input, {
+          type: "checkbox",
+          checked: true,
+          disabled: true
+        }), " ", "done"]
+      }), "\n", jsxs(_components.li, {
+        className: "task-list-item",
+        children: [jsx(_components.input, {
+          type: "checkbox",
+          checked: true,
+          disabled: true
+        }), " ", "done"]
+      }), "\n", jsxs(_components.li, {
+        className: "task-list-item",
+        children: [jsx(_components.input, {
+          type: "checkbox",
+          checked: true,
+          disabled: true
+        }), " ", "done"]
+      }), "\n", jsxs(_components.li, {
+        className: "task-list-item",
+        children: [jsx(_components.input, {
+          type: "checkbox",
+          checked: true,
+          disabled: true
+        }), " ", "done"]
+      }), "\n", jsxs(_components.li, {
+        className: "task-list-item",
+        children: [jsx(_components.input, {
+          type: "checkbox",
+          checked: true,
+          disabled: true
+        }), " ", "done"]
+      }), "\n", jsxs(_components.li, {
+        className: "task-list-item",
+        children: [jsx(_components.input, {
+          type: "checkbox",
+          checked: true,
+          disabled: true
+        }), " ", "done"]
+      }), "\n", jsxs(_components.li, {
+        className: "task-list-item",
+        children: [jsx(_components.input, {
+          type: "checkbox",
+          checked: true,
+          disabled: true
+        }), " ", "done"]
+      }), "\n", jsxs(_components.li, {
+        className: "task-list-item",
+        children: [jsx(_components.input, {
+          type: "checkbox",
+          checked: true,
+          disabled: true
+        }), " ", "done"]
+      }), "\n", jsxs(_components.li, {
+        className: "task-list-item",
+        children: [jsx(_components.input, {
+          type: "checkbox",
+          checked: true,
+          disabled: true
+        }), " ", "done"]
+      }), "\n", jsxs(_components.li, {
+        className: "task-list-item",
+        children: [jsx(_components.input, {
+          type: "checkbox",
+          checked: true,
+          disabled: true
+        }), " ", "done"]
+      }), "\n", jsxs(_components.li, {
+        className: "task-list-item",
+        children: [jsx(_components.input, {
+          type: "checkbox",
+          checked: true,
+          disabled: true
+        }), " ", "done"]
+      }), "\n", jsxs(_components.li, {
+        className: "task-list-item",
+        children: [jsx(_components.input, {
+          type: "checkbox",
+          checked: true,
+          disabled: true
+        }), " ", "done"]
+      }), "\n", jsxs(_components.li, {
+        className: "task-list-item",
+        children: [jsx(_components.input, {
+          type: "checkbox",
+          checked: true,
+          disabled: true
+        }), " ", "done"]
+      }), "\n"]
+    }), "\n", jsxs(_components.div, {
+      className: "language-ts",
+      children: [jsx(_components.span, {
+        className: "lang",
+        children: "ts"
+      }), jsx(_components.pre, {
+        className: "shiki nord",
+        style: {
+          backgroundColor: "#2e3440ff"
+        },
+        tabIndex: "0",
+        children: jsxs(_components.code, {
+          children: [jsxs(_components.span, {
+            className: "line",
+            children: [jsx(_components.span, {
+              style: {
+                color: "#81A1C1"
+              },
+              children: "import"
+            }), jsx(_components.span, {
+              style: {
+                color: "#D8DEE9FF"
+              },
+              children: " "
+            }), jsx(_components.span, {
+              style: {
+                color: "#ECEFF4"
+              },
+              children: "{"
+            }), jsx(_components.span, {
+              style: {
+                color: "#D8DEE9FF"
+              },
+              children: " "
+            }), jsx(_components.span, {
+              style: {
+                color: "#D8DEE9"
+              },
+              children: "Plugin"
+            }), jsx(_components.span, {
+              style: {
+                color: "#D8DEE9FF"
+              },
+              children: " "
+            }), jsx(_components.span, {
+              style: {
+                color: "#ECEFF4"
+              },
+              children: "}"
+            }), jsx(_components.span, {
+              style: {
+                color: "#D8DEE9FF"
+              },
+              children: " "
+            }), jsx(_components.span, {
+              style: {
+                color: "#81A1C1"
+              },
+              children: "from"
+            }), jsx(_components.span, {
+              style: {
+                color: "#D8DEE9FF"
+              },
+              children: " "
+            }), jsx(_components.span, {
+              style: {
+                color: "#ECEFF4"
+              },
+              children: "'"
+            }), jsx(_components.span, {
+              style: {
+                color: "#A3BE8C"
+              },
+              children: "vite"
+            }), jsx(_components.span, {
+              style: {
+                color: "#ECEFF4"
+              },
+              children: "'"
+            }), jsx(_components.span, {
+              style: {
+                color: "#81A1C1"
+              },
+              children: ";"
+            })]
+          }), "\n", jsxs(_components.span, {
+            className: "line",
+            children: [jsx(_components.span, {
+              style: {
+                color: "#81A1C1"
+              },
+              children: "import"
+            }), jsx(_components.span, {
+              style: {
+                color: "#D8DEE9FF"
+              },
+              children: " "
+            }), jsx(_components.span, {
+              style: {
+                color: "#ECEFF4"
+              },
+              children: "{"
+            }), jsx(_components.span, {
+              style: {
+                color: "#D8DEE9FF"
+              },
+              children: " "
+            }), jsx(_components.span, {
+              style: {
+                color: "#D8DEE9"
+              },
+              children: "pluginMdxRollup"
+            }), jsx(_components.span, {
+              style: {
+                color: "#D8DEE9FF"
+              },
+              children: " "
+            }), jsx(_components.span, {
+              style: {
+                color: "#ECEFF4"
+              },
+              children: "}"
+            }), jsx(_components.span, {
+              style: {
+                color: "#D8DEE9FF"
+              },
+              children: " "
+            }), jsx(_components.span, {
+              style: {
+                color: "#81A1C1"
+              },
+              children: "from"
+            }), jsx(_components.span, {
+              style: {
+                color: "#D8DEE9FF"
+              },
+              children: " "
+            }), jsx(_components.span, {
+              style: {
+                color: "#ECEFF4"
+              },
+              children: "'"
+            }), jsx(_components.span, {
+              style: {
+                color: "#A3BE8C"
+              },
+              children: "./pluginMdxRollup"
+            }), jsx(_components.span, {
+              style: {
+                color: "#ECEFF4"
+              },
+              children: "'"
+            }), jsx(_components.span, {
+              style: {
+                color: "#81A1C1"
+              },
+              children: ";"
+            })]
+          }), "\n", jsx(_components.span, {
+            className: "line"
+          }), "\n", jsxs(_components.span, {
+            className: "line",
+            children: [jsx(_components.span, {
+              style: {
+                color: "#81A1C1"
+              },
+              children: "export"
+            }), jsx(_components.span, {
+              style: {
+                color: "#D8DEE9FF"
+              },
+              children: " "
+            }), jsx(_components.span, {
+              style: {
+                color: "#81A1C1"
+              },
+              children: "async"
+            }), jsx(_components.span, {
+              style: {
+                color: "#D8DEE9FF"
+              },
+              children: " "
+            }), jsx(_components.span, {
+              style: {
+                color: "#81A1C1"
+              },
+              children: "function"
+            }), jsx(_components.span, {
+              style: {
+                color: "#D8DEE9FF"
+              },
+              children: " "
+            }), jsx(_components.span, {
+              style: {
+                color: "#88C0D0"
+              },
+              children: "pluginMdx"
+            }), jsx(_components.span, {
+              style: {
+                color: "#ECEFF4"
+              },
+              children: "()"
+            }), jsx(_components.span, {
+              style: {
+                color: "#81A1C1"
+              },
+              children: ":"
+            }), jsx(_components.span, {
+              style: {
+                color: "#D8DEE9FF"
+              },
+              children: " "
+            }), jsx(_components.span, {
+              style: {
+                color: "#8FBCBB"
+              },
+              children: "Promise"
+            }), jsx(_components.span, {
+              style: {
+                color: "#ECEFF4"
+              },
+              children: "<"
+            }), jsx(_components.span, {
+              style: {
+                color: "#8FBCBB"
+              },
+              children: "Plugin"
+            }), jsx(_components.span, {
+              style: {
+                color: "#D8DEE9FF"
+              },
+              children: "[]"
+            }), jsx(_components.span, {
+              style: {
+                color: "#ECEFF4"
+              },
+              children: ">"
+            }), jsx(_components.span, {
+              style: {
+                color: "#D8DEE9FF"
+              },
+              children: " "
+            }), jsx(_components.span, {
+              style: {
+                color: "#ECEFF4"
+              },
+              children: "{"
+            })]
+          }), "\n", jsxs(_components.span, {
+            className: "line",
+            children: [jsx(_components.span, {
+              style: {
+                color: "#D8DEE9FF"
+              },
+              children: "  "
+            }), jsx(_components.span, {
+              style: {
+                color: "#81A1C1"
+              },
+              children: "return"
+            }), jsx(_components.span, {
+              style: {
+                color: "#D8DEE9FF"
+              },
+              children: " ["
+            }), jsx(_components.span, {
+              style: {
+                color: "#81A1C1"
+              },
+              children: "await"
+            }), jsx(_components.span, {
+              style: {
+                color: "#D8DEE9FF"
+              },
+              children: " "
+            }), jsx(_components.span, {
+              style: {
+                color: "#88C0D0"
+              },
+              children: "pluginMdxRollup"
+            }), jsx(_components.span, {
+              style: {
+                color: "#D8DEE9FF"
+              },
+              children: "()]"
+            }), jsx(_components.span, {
+              style: {
+                color: "#81A1C1"
+              },
+              children: ";"
+            })]
+          }), "\n", jsx(_components.span, {
+            className: "line",
+            children: jsx(_components.span, {
+              style: {
+                color: "#ECEFF4"
+              },
+              children: "}"
+            })
+          }), "\n", jsx(_components.span, {
+            className: "line"
+          })]
+        })
+      })]
+    }), "\n", "\n", jsxs(_components.section, {
+      "data-footnotes": true,
+      className: "footnotes",
+      children: [jsxs(_components.h2, {
+        className: "sr-only",
+        id: "footnote-label",
+        children: [jsx(_components.a, {
+          className: "header-anchor",
+          href: "#footnote-label",
+          children: "#"
+        }), "Footnotes"]
+      }), "\n", jsxs(_components.ol, {
+        children: ["\n", jsxs(_components.li, {
+          id: "user-content-fn-1",
+          children: ["\n", jsxs(_components.p, {
+            children: ["Big note. 125 ", jsx(_components.a, {
+              href: "#user-content-fnref-1",
+              "data-footnote-backref": true,
+              className: "data-footnote-backref",
+              "aria-label": "Back to content",
+              children: "↩"
+            })]
+          }), "\n"]
+        }), "\n"]
+      }), "\n"]
+    })]
+  });
+}
+function MDXContent(props = {}) {
+  const { wrapper: MDXLayout } = props.components || {};
+  return MDXLayout ? jsx(MDXLayout, Object.assign({}, props, {
+    children: jsx(_createMdxContent, props)
+  })) : _createMdxContent(props);
+}
 const routes = [
-  { path: "/b", element: React.createElement(Route0) },
-  { path: "/guide/a", element: React.createElement(Route1) },
-  { path: "/guide/", element: React.createElement(Route2) },
-  { path: "/", element: React.createElement(Route3) }
+  { path: "/Counter", element: React.createElement(Counter) },
+  { path: "/b", element: React.createElement(B) },
+  { path: "/guide/a", element: React.createElement(A) },
+  { path: "/guide/", element: React.createElement(Index) },
+  { path: "/", element: React.createElement(MDXContent) }
 ];
 const Content = () => {
   console.log(routes);
@@ -773,14 +1426,16 @@ const Content = () => {
   return routeElement;
 };
 function Layout() {
-  return /* @__PURE__ */ jsxRuntime.jsxs("div", { children: [
-    /* @__PURE__ */ jsxRuntime.jsx("h1", { children: "Common Content" }),
-    /* @__PURE__ */ jsxRuntime.jsx("h1", { children: "Doc Content" }),
-    /* @__PURE__ */ jsxRuntime.jsx(Content, {})
-  ] });
+  return /* @__PURE__ */ jsxs("div", {
+    children: [/* @__PURE__ */ jsx("h1", {
+      children: "Common Content"
+    }), /* @__PURE__ */ jsx("h1", {
+      children: "Doc Content"
+    }), /* @__PURE__ */ jsx(Content, {})]
+  });
 }
 function App() {
-  return /* @__PURE__ */ jsxRuntime.jsx(Layout, {});
+  return /* @__PURE__ */ jsx(Layout, {});
 }
 function StaticRouter({
   basename,
@@ -799,7 +1454,7 @@ function StaticRouter({
     key: locationProp.key || "default"
   };
   let staticNavigator = getStatelessNavigator();
-  return /* @__PURE__ */ React__namespace.createElement(Router, {
+  return /* @__PURE__ */ jsx(Router, {
     basename,
     children,
     location,
@@ -840,9 +1495,11 @@ function encodeLocation(to) {
     hash: path.hash || ""
   };
 }
-function render() {
-  return server.renderToString(
-    /* @__PURE__ */ jsxRuntime.jsx(StaticRouter, { location: "/guide", children: /* @__PURE__ */ jsxRuntime.jsx(App, {}) })
-  );
+function render(pagePath) {
+  return server.renderToString(/* @__PURE__ */ jsx(StaticRouter, {
+    location: pagePath,
+    children: /* @__PURE__ */ jsx(App, {})
+  }));
 }
 exports.render = render;
+exports.routes = routes;
