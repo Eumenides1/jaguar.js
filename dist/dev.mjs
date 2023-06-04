@@ -55,7 +55,7 @@ function pluginIndexHtml() {
   };
 }
 
-// src/node/dev.ts
+// src/node/vitePlugins.ts
 import pluginReact from "@vitejs/plugin-react";
 
 // src/node/plugin-routes/RouteService.ts
@@ -131,22 +131,65 @@ function pluginRoutes(options) {
   };
 }
 
+// src/node/plugin-mdx/pluginMdxRollup.ts
+import pluginMdx from "@mdx-js/rollup";
+import remarkPluginGFM from "remark-gfm";
+import rehypePluginAutolinkHeadings from "rehype-autolink-headings";
+import rehypePluginSlug from "rehype-slug";
+import remarkPluginMDXFrontMatter from "remark-mdx-frontmatter";
+import remarkPluginFrontmatter from "remark-frontmatter";
+function pluginMdxRollup() {
+  return pluginMdx({
+    remarkPlugins: [
+      remarkPluginGFM,
+      remarkPluginFrontmatter,
+      [remarkPluginMDXFrontMatter, { name: "frontmatter" }]
+    ],
+    rehypePlugins: [
+      rehypePluginSlug,
+      [
+        rehypePluginAutolinkHeadings,
+        {
+          properties: {
+            class: "header-anchor"
+          },
+          content: {
+            type: "text",
+            value: "#"
+          }
+        }
+      ]
+    ]
+  });
+}
+
+// src/node/plugin-mdx/index.ts
+function pluginMdx2() {
+  return [pluginMdxRollup()];
+}
+
+// src/node/vitePlugins.ts
+function createVitePlugins(config, restartServer) {
+  return [
+    pluginIndexHtml(),
+    pluginReact({
+      jsxRuntime: "automatic"
+    }),
+    pluginConfig(config, restartServer),
+    pluginRoutes({
+      root: config.root
+    }),
+    pluginMdx2()
+  ];
+}
+
 // src/node/dev.ts
 async function createDevServer(root, restartServer) {
   const config = await resolveConfig(root, "serve", "development");
   console.log(config);
   return createServer({
     root: PACKAGE_ROOT,
-    plugins: [
-      pluginIndexHtml(),
-      pluginReact({
-        jsxRuntime: "automatic"
-      }),
-      pluginConfig(config, restartServer),
-      pluginRoutes({
-        root: config.root
-      })
-    ],
+    plugins: createVitePlugins(config, restartServer),
     server: {
       fs: {
         allow: [PACKAGE_ROOT]

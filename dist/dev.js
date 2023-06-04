@@ -55,7 +55,7 @@ function pluginIndexHtml() {
   };
 }
 
-// src/node/dev.ts
+// src/node/vitePlugins.ts
 var _pluginreact = require('@vitejs/plugin-react'); var _pluginreact2 = _interopRequireDefault(_pluginreact);
 
 // src/node/plugin-routes/RouteService.ts
@@ -131,22 +131,65 @@ function pluginRoutes(options) {
   };
 }
 
+// src/node/plugin-mdx/pluginMdxRollup.ts
+var _rollup = require('@mdx-js/rollup'); var _rollup2 = _interopRequireDefault(_rollup);
+var _remarkgfm = require('remark-gfm'); var _remarkgfm2 = _interopRequireDefault(_remarkgfm);
+var _rehypeautolinkheadings = require('rehype-autolink-headings'); var _rehypeautolinkheadings2 = _interopRequireDefault(_rehypeautolinkheadings);
+var _rehypeslug = require('rehype-slug'); var _rehypeslug2 = _interopRequireDefault(_rehypeslug);
+var _remarkmdxfrontmatter = require('remark-mdx-frontmatter'); var _remarkmdxfrontmatter2 = _interopRequireDefault(_remarkmdxfrontmatter);
+var _remarkfrontmatter = require('remark-frontmatter'); var _remarkfrontmatter2 = _interopRequireDefault(_remarkfrontmatter);
+function pluginMdxRollup() {
+  return _rollup2.default.call(void 0, {
+    remarkPlugins: [
+      _remarkgfm2.default,
+      _remarkfrontmatter2.default,
+      [_remarkmdxfrontmatter2.default, { name: "frontmatter" }]
+    ],
+    rehypePlugins: [
+      _rehypeslug2.default,
+      [
+        _rehypeautolinkheadings2.default,
+        {
+          properties: {
+            class: "header-anchor"
+          },
+          content: {
+            type: "text",
+            value: "#"
+          }
+        }
+      ]
+    ]
+  });
+}
+
+// src/node/plugin-mdx/index.ts
+function pluginMdx2() {
+  return [pluginMdxRollup()];
+}
+
+// src/node/vitePlugins.ts
+function createVitePlugins(config, restartServer) {
+  return [
+    pluginIndexHtml(),
+    _pluginreact2.default.call(void 0, {
+      jsxRuntime: "automatic"
+    }),
+    _chunkZH5NFGPOjs.pluginConfig.call(void 0, config, restartServer),
+    pluginRoutes({
+      root: config.root
+    }),
+    pluginMdx2()
+  ];
+}
+
 // src/node/dev.ts
 async function createDevServer(root, restartServer) {
   const config = await _chunkEH4W5WKDjs.resolveConfig.call(void 0, root, "serve", "development");
   console.log(config);
   return _vite.createServer.call(void 0, {
     root: _chunkZH5NFGPOjs.PACKAGE_ROOT,
-    plugins: [
-      pluginIndexHtml(),
-      _pluginreact2.default.call(void 0, {
-        jsxRuntime: "automatic"
-      }),
-      _chunkZH5NFGPOjs.pluginConfig.call(void 0, config, restartServer),
-      pluginRoutes({
-        root: config.root
-      })
-    ],
+    plugins: createVitePlugins(config, restartServer),
     server: {
       fs: {
         allow: [_chunkZH5NFGPOjs.PACKAGE_ROOT]
