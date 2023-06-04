@@ -1,0 +1,6 @@
+.clip {
+    background: var(--jaguar-home-hero-name-background);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: var(--jaguar-home-hero-name-color);
+}
