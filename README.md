@@ -11,6 +11,7 @@
 To run tests, run the following command
 
 ```bash
+  pnpm install
   jaguar dev docs
 ```
 
