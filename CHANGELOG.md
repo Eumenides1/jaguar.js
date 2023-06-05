@@ -1,6 +1,15 @@
 ## [1.0.6](https://github.com/Eumenides1/jaguar.js/compare/v1.0.5...v1.0.6) (2023-06-05)
 
 
+### Features
+
+* 版本号-v1.0.6 ([87caea2](https://github.com/Eumenides1/jaguar.js/commit/87caea29f42d446ac3f9df8ab0e15fa76f3dbda7))
+
+
+
+## [1.0.6](https://github.com/Eumenides1/jaguar.js/compare/v1.0.5...v1.0.6) (2023-06-05)
+
+
 
 ## [1.0.5](https://github.com/Eumenides1/jaguar.js/compare/v1.0.4...v1.0.5) (2023-06-05)
 

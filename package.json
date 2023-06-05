@@ -1,5 +1,5 @@
 {
-  "name": "island-dev",
+  "name": "jaguar.js",
   "version": "1.0.6",
   "description": "Vite SSG framework based on islands arch",
   "main": "dist/index.js",
