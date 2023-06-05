@@ -1,6 +1,6 @@
 {
   "name": "jaguar.js",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Vite SSG framework based on islands arch",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -39,7 +39,8 @@
     "README.md",
     "src/runtime",
     "src/theme-default",
-    "src/shared"
+    "src/shared",
+    "template.html"
   ],
   "devDependencies": {
     "@commitlint/cli": "^17.2.0",

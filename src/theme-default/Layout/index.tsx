@@ -29,7 +29,7 @@ export function Layout() {
       <Nav />
       <section
         style={{
-          paddingTop: 'var(--island-nav-height)'
+          paddingTop: 'var(--jaguar-nav-height)'
         }}
       >
         {getContent()}

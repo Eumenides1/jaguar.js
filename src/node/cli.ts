@@ -4,7 +4,7 @@ import { build } from './build';
 import { preview } from './preview';
 import { resolveConfig } from './config';
 
-const cli = cac('island').version('0.0.1').help();
+const cli = cac('jaguar').version('0.0.1').help();
 
 cli.command('dev [root]', 'start dev server').action(async (root: string) => {
   const createServer = async () => {
