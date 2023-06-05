@@ -1,6 +1,6 @@
 {
   "name": "jaguar.js",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Vite SSG framework based on islands arch",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -124,6 +124,7 @@
     "src/runtime",
     "src/theme-default",
     "src/shared",
+    "src/node",
     "template.html"
   ]
 }
